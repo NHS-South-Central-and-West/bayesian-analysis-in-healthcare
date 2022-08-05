@@ -40,7 +40,8 @@ health_inequalities_df <-
   full_join(imd_raw) %>%
   rename(
     life_expectancy = `Life expectancy at birth`,
-    mortality = `Mortality rate from causes considered preventable (2016 definition)`
+    mortality = `Mortality rate from causes considered preventable (2016 definition)`,
+    imd_decile = decile
   ) %>%
   tidyr::drop_na()
 
