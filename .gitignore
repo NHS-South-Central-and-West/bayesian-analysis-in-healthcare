@@ -39,3 +39,6 @@ vignettes/*.pdf
 .Renviron
 
 /.quarto/
+
+/src/deprivation_files/
+
