@@ -29,7 +29,7 @@ deprivation_df <-
 ## Visual Exploration of Deprivation and Health Inequalities Data
 
 
-```{r}
+```{r imd-score-plot}
 
 deprivation_df %>%
   ggplot(aes(life_expectancy, imd_score)) +
@@ -37,7 +37,7 @@ deprivation_df %>%
 
 ```
 
-```{r}
+```{r health-index-plots}
 
 deprivation_df %>%
   ggplot(aes(life_expectancy, physiological_risk_factors)) +
@@ -51,20 +51,11 @@ deprivation_df %>%
 
 ## Linear Regression the Frequentist Way
 
-```{r life-expectancy-ols}
+First we will transform each of the explanatory variables to make them a little easier to interpret (particularly with regard to the intercept).
 
-life_expectancy_ols <-
-  lm(life_expectancy ~ imd_score + physiological_risk_factors + behavioural_risk_factors,
-    data = deprivation_df
-    )
+These transformations won't impact the regression results, but will just make the results easier to explain, as the intercept is no longer based on zero values of each explanatory variable (which are effectively meaningless, especially in the Health Index variables).
 
-summary(life_expectancy_ols)
-
-```
-
-## Bayesian Regression
-
-```{r}
+```{r transforms}
 
 mean_imd <- mean(deprivation_df$imd_score)
 
@@ -79,13 +70,32 @@ deprivation_df <-
 
 ```
 
+The frequentist regression is very easy to compute, using `lm()`.
+
+```{r life-expectancy-ols}
+
+life_expectancy_ols <-
+  lm(life_expectancy ~ imd_transformed + physiological_transformed + behavioural_transformed,
+    data = deprivation_df
+    )
+
+summary(life_expectancy_ols)
+
+```
+
+The results suggest that each of the explanatory variables has a small but significant effect on life expectancy. As deprivation increases (IMD score increases), life expectancy decreases, while as the index score representing physiological and behavioural risk factors (meaning a better performance in that Health Index subdomain) increases, life expectancy increases.
+
+## Bayesian Regression
+
 ### Constructing Sensible Priors
 
 First we need to come up with some priors. Given everything we already know about life expectancy at birth and the effect that deprivation has on health outcomes, we should be able to constrain our prior distribution in relatively informative ways. 
 
-First, we would expect life expectancy at birth to be around 80, with some variance, probably around 5-10 years, but we will go for 20 years so as to avoid the priors having too much control over the posterior distribution.
+First, we would expect life expectancy at birth to be normally distributed around 80.
 
-With IMD Deciles, we can reasonably expect that we should observe a negative relationship on health outcomes as deprivation increases, meaning that as IMD Deciles increase (meaning lower deprivation), life expectancy should increase. The effect is unlikely to be huge, so we will conservatively estimate that each one unit increase in IMD Decile will be associated with a one unit decrease in life expectancy at birth. The key here is more the standard error, which we will constraint sufficiently to mean that our prior is that deprivation will only have a negative effect on life expectancy.
+With IMD scores, we can reasonably expect that we should observe a negative relationship on health outcomes as deprivation increases, meaning that as IMD scores increase (meaning higher deprivation), life expectancy should decrease. The effect is unlikely to be huge, so we will conservatively estimate that each one unit increase in IMD score will be associated with a one unit decrease in life expectancy at birth. The key here is more the standard error, which we will constraint sufficiently to mean that our prior is that deprivation will only have a negative effect on life expectancy.
+
+We have similar expectations of the physiological
 
 ```{r life-expectancy-priors}
 #| echo: true
@@ -117,7 +127,7 @@ plot(life_expectancy_priors, "hist")
 
 ## Bayesian GLM
 
-```{r}
+```{r life-expectancy-glm}
 #| echo: true
 #| results: hide
 
@@ -133,7 +143,7 @@ life_expectancy_posterior <- as.matrix(life_expectancy_glm)
 
 ```
 
-```{r}
+```{r posterior-checks}
 
 bayesplot::mcmc_areas(
   life_expectancy_posterior,
@@ -143,14 +153,14 @@ bayesplot::mcmc_areas(
     "behavioural_transformed",
     "sigma"
     ),
-  prob = 0.8
+  prob = 0.9
 )
 
 bayesplot::ppc_dens_overlay(y = life_expectancy_glm$y,
                  yrep = posterior_predict(life_expectancy_glm, draws = 50)) +
   labs(
     title = "Posterior Predictive Checks Against Observed Data",
-    subtitle = "Samples Drawn from Posterior Predictive Distribution of Life Expectancy by IMD Score and Physiological & Behavioural Risk Factors",
+    subtitle = "Samples Drawn from Posterior Predictive Distribution of Life Expectancy\nby IMD Score and Physiological & Behavioural Risk Factors",
     x = "Life Expectancy"
     ) +
   theme(
@@ -158,9 +168,13 @@ bayesplot::ppc_dens_overlay(y = life_expectancy_glm$y,
     legend.text = element_text(size = 12)
   )
 
-posterior_vs_prior(life_expectancy_glm, prob = 0.8,
+posterior_vs_prior(life_expectancy_glm, prob = 0.9,
                    group_by_parameter = TRUE,
-                   facet_args = list(scales = "free"))
+                   facet_args = list(scales = "free")) +
+  scale_colour_viridis_d() +
+  theme_minimal() +
+  theme(legend.position = "top",
+        legend.title = element_blank())
 
 bayesplot::ppc_scatter_avg(y = life_expectancy_glm$y,
                            yrep = posterior_predict(life_expectancy_glm, draws = 50))
