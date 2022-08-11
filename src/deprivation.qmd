@@ -29,7 +29,9 @@ deprivation_df <-
 ## Visual Exploration of Deprivation and Health Inequalities Data
 
 
-```{r imd-score-plot}
+```{r imd-score-eda}
+
+summary(deprivation_df$imd_score)
 
 deprivation_df %>%
   ggplot(aes(life_expectancy, imd_score)) +
@@ -37,7 +39,11 @@ deprivation_df %>%
 
 ```
 
-```{r health-index-plots}
+```{r health-index-eda}
+
+summary(deprivation_df$physiological_risk_factors)
+
+summary(deprivation_df$behavioural_risk_factors)
 
 deprivation_df %>%
   ggplot(aes(life_expectancy, physiological_risk_factors)) +
@@ -48,6 +54,48 @@ deprivation_df %>%
   geom_point()
 
 ```
+
+```{r correlations}
+
+deprivation_df %>%
+  select(
+    life_expectancy,
+    physiological_risk_factors,
+    behavioural_risk_factors,
+    imd_score
+         ) %>%
+  group_by(area_code) %>%
+  summarise_all(.funs = "mean") %>%
+  correlation::correlation(bayesian = TRUE) %>%
+  summary()
+
+```
+
+There are strong correlations between life expectancy and the three independent variables, however, the correlation between IMD score and the two risk factor variables is also relatively strong, and in the case of behavioural risk factors, it is very strong. This could be an issue.
+
+```{r correlation-eda}
+
+deprivation_df %>%
+  ggplot(aes(imd_score, physiological_risk_factors)) +
+  geom_point()
+
+deprivation_df %>%
+  ggplot(aes(imd_score, behavioural_risk_factors)) +
+  geom_point()
+
+deprivation_df %>%
+  mutate(imd_decile = as.factor(imd_decile)) %>%
+  ggplot(aes(physiological_risk_factors, imd_decile)) +
+  ggridges::geom_density_ridges()
+
+deprivation_df %>%
+  mutate(imd_decile = as.factor(imd_decile)) %>%
+  ggplot(aes(behavioural_risk_factors, imd_decile)) +
+  ggridges::geom_density_ridges()
+
+```
+
+The correlations are a little more obvious when plotted and inspected visually. The behavioural risk factors have a positive linear relationship with IMD (as the value of the risk factor goes up, so does IMD score/decile).
 
 ## Linear Regression the Frequentist Way
 
@@ -115,6 +163,8 @@ We can see a summary of our priors here:
 
 ```{r prior-summary}
 prior_summary(life_expectancy_priors)
+
+bayestestR::describe_prior(life_expectancy_priors)
 ```
 
 The prior distributions look pretty sensible:
@@ -143,21 +193,24 @@ life_expectancy_posterior <- as.matrix(life_expectancy_glm)
 
 ```
 
+```{r model-diagnostics}
+
+bayestestR::sensitivity_to_prior(life_expectancy_glm)
+
+bayestestR::diagnostic_posterior(life_expectancy_glm)
+
+
+```
+
 ```{r posterior-checks}
 
-bayesplot::mcmc_areas(
-  life_expectancy_posterior,
-  pars = c(
-    "imd_transformed",
-    "physiological_transformed",
-    "behavioural_transformed",
-    "sigma"
-    ),
-  prob = 0.9
-)
-
-bayesplot::ppc_dens_overlay(y = life_expectancy_glm$y,
-                 yrep = posterior_predict(life_expectancy_glm, draws = 50)) +
+bayesplot::ppc_dens_overlay(
+  y = life_expectancy_glm$y,
+  yrep = posterior_predict(
+    life_expectancy_glm,
+    draws = 50
+    )
+  ) +
   labs(
     title = "Posterior Predictive Checks Against Observed Data",
     subtitle = "Samples Drawn from Posterior Predictive Distribution of Life Expectancy\nby IMD Score and Physiological & Behavioural Risk Factors",
@@ -168,16 +221,46 @@ bayesplot::ppc_dens_overlay(y = life_expectancy_glm$y,
     legend.text = element_text(size = 12)
   )
 
-posterior_vs_prior(life_expectancy_glm, prob = 0.9,
-                   group_by_parameter = TRUE,
-                   facet_args = list(scales = "free")) +
+posterior_vs_prior(
+  life_expectancy_glm,
+  prob = 0.9,
+  group_by_parameter = TRUE,
+  facet_args = list(scales = "free")
+  ) +
   scale_colour_viridis_d() +
   theme_minimal() +
-  theme(legend.position = "top",
-        legend.title = element_blank())
+  theme(
+    legend.position = "top",
+    legend.title = element_blank()
+    )
 
-bayesplot::ppc_scatter_avg(y = life_expectancy_glm$y,
-                           yrep = posterior_predict(life_expectancy_glm, draws = 50))
+bayesplot::ppc_scatter_avg(
+  y = life_expectancy_glm$y,
+  yrep = posterior_predict(
+    life_expectancy_glm,
+    draws = 50
+    )
+  )
+
+
+```
+
+```{r parameter-values}
+
+bayestestR::hdi(
+  life_expectancy_glm,
+  ci = c(
+    0.5, 0.75, 0.89, 0.95
+    )
+  ) %>%
+  plot()
+
+
+bayestestR::map_estimate(
+  life_expectancy_posterior
+  ) %>%
+  plot()
+
 
 
 ```
