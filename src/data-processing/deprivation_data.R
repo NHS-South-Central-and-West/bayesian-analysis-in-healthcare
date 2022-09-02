@@ -1,4 +1,4 @@
-# script to read and format raw data
+# script to read and format raw data for deprivation models
 
 # Setup ----
 
@@ -9,7 +9,7 @@ library(dplyr)
 ## PHE Fingertips ----
 
 # pull wider determinants raw data from fingertips
-wider_determinants_raw <- 
+wider_determinants_raw <-
   fingertipsR::fingertips_data(
     ProfileID = 130,
     # using pre 4/19 upper tier local authorities to match health index
@@ -18,10 +18,10 @@ wider_determinants_raw <-
   janitor::clean_names()
 
 # pull imd scores and deciles from fingertips
-imd_raw <- 
+imd_raw <-
   fingertipsR::deprivation_decile(
     AreaTypeID = 102
-    ) %>%
+  ) %>%
   janitor::clean_names(abbreviations = c("IMD"))
 
 # filter for the indicators of interest and wrangle data into tidy structure
@@ -50,19 +50,19 @@ readr::write_rds(
   health_inequalities_df,
   here::here(
     "data", "raw", "health_inequalities.rds"
-    )
   )
+)
 
 ## ONS Health Index ----
 
-# import health index data 
-health_index_df <- 
+# import health index data
+health_index_df <-
   openxlsx::read.xlsx(
     "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/healthandsocialcare/healthandwellbeing/datasets/healthindexengland/2015to2018/hibetadatatablesv2.xlsx",
     sheet = 8,
     rows = c(8:50252),
     colNames = TRUE
-    ) %>%
+  ) %>%
   janitor::clean_names()
 
 # save health index data
@@ -70,8 +70,8 @@ readr::write_rds(
   health_index_df,
   here::here(
     "data", "raw", "health_index.rds"
-    )
   )
+)
 
 # Merge & Wrangle Deprivation Dataset ----
 
@@ -103,5 +103,5 @@ readr::write_rds(
   deprivation_df,
   here::here(
     "data", "deprivation.rds"
-    )
   )
+)
