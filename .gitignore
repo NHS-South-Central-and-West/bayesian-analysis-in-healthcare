@@ -40,5 +40,5 @@ vignettes/*.pdf
 
 /.quarto/
 
-/src/deprivation_files/
+/src/01-deprivation_files/
 
