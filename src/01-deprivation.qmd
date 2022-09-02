@@ -10,9 +10,11 @@ editor_options:
 ```{r setup}
 #| include: false
 
-library(dplyr)
-library(ggplot2)
-library(rstanarm)
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(ggplot2)
+  library(rstanarm)
+})
 
 theme_set(theme_minimal(base_family = "sans"))
 bayesplot::color_scheme_set("teal")
@@ -26,7 +28,21 @@ deprivation_df <-
 
 ## Frequentist Vs Bayesian Statistics: A Primer
 
+At its core, Frequentist vs Bayesian differences lie in the definition of probability. 
 
+Frequentists think of probability in terms of frequencies. The probability of an event is a measure of the frequency of that event after repeated measurements. Bayesians, however, incorporate uncertainty as a part of probability.
+
+For Bayesians, probability is an attempt to define the plausability of a proposition/situation. 
+
+In Bayesian statistics, the p-value is not a value, but a distribution (or in reality, the p-value is not relevant).
+
+At a very basic level, the fundamental difference between the Frequentist and Bayesian frameworks are that Bayesian inference includes any prior expectations and knowledge that can help in drawing inferences.
+
+Frequentist probability - If you ran the same simulation again and again, the probability that you observe the outcome
+
+Bayesian probability
+
+In reality, I think that Bayesian approaches to probability are a lot more intuitive than Frequentist approaches. You have to train your mind to think like a Frequentist, whereas our natural way of understanding probabilities is inherently Bayesian.
 
 ## Visual Exploration of Deprivation and Health Inequalities Data
 
@@ -36,14 +52,16 @@ deprivation_df <-
 deprivation_df %>%
   psych::describe() %>%
   filter(!row_number() %in% c(1, 2)) %>%
-  select(-vars, -n, -trimmed, -mad,
-         -skew, -kurtosis, -se, -range) %>%
+  select(
+    -vars, -n, -trimmed, -mad,
+    -skew, -kurtosis, -se, -range
+  ) %>%
   relocate(sd, .after = median) %>%
   kableExtra::kbl() %>%
   kableExtra::kable_styling(
     bootstrap_options = c("striped", "hover", "condensed"),
     fixed_thead = T
-    )
+  )
 
 deprivation_df %>%
   ggplot(aes(life_expectancy, imd_score)) +
@@ -72,16 +90,16 @@ deprivation_df %>%
     physiological_risk_factors,
     behavioural_risk_factors,
     imd_score
-         ) %>%
+  ) %>%
   group_by(area_code) %>%
   summarise_all(.funs = "mean") %>%
   correlation::correlation(bayesian = TRUE) %>%
   summary() %>%
   kableExtra::kbl() %>%
-    kableExtra::kable_styling(
+  kableExtra::kable_styling(
     bootstrap_options = c("striped", "hover", "condensed"),
     fixed_thead = T
-    )
+  )
 
 ```
 
@@ -127,8 +145,7 @@ deprivation_df <-
     imd_transformed = imd_score - mean_imd,
     physiological_transformed = physiological_risk_factors - 100,
     behavioural_transformed = behavioural_risk_factors - 100
-    )
-
+  )
 
 ```
 
@@ -139,7 +156,7 @@ The frequentist regression is very easy to compute, using `lm()`.
 life_expectancy_ols <-
   lm(life_expectancy ~ imd_transformed + physiological_transformed + behavioural_transformed,
     data = deprivation_df
-    )
+  )
 
 sjPlot::tab_model(life_expectancy_ols)
 
@@ -163,14 +180,14 @@ We have similar expectations of the physiological
 #| echo: true
 #| results: hide
 
-life_expectancy_priors <- 
+life_expectancy_priors <-
   stan_glm(
     life_expectancy ~ imd_transformed + physiological_transformed + behavioural_transformed,
     data = deprivation_df,
     prior_intercept = normal(80, 1),
     prior = normal(location = c(-1, 1, 1), scale = c(0.25, 0.5, 0.25)),
     prior_PD = TRUE
-    )
+  )
 ```
 
 We can see a summary of our priors here:
@@ -187,7 +204,7 @@ life_expectancy_priors %>%
   kableExtra::kable_styling(
     bootstrap_options = c("striped", "hover", "condensed"),
     fixed_thead = T
-    )
+  )
 ```
 
 The prior distributions look pretty sensible:
@@ -205,15 +222,14 @@ plot(life_expectancy_priors, "hist")
 #| echo: true
 #| results: hide
 
-life_expectancy_glm <- 
+life_expectancy_glm <-
   stan_glm(
     life_expectancy ~ imd_transformed + physiological_transformed + behavioural_transformed,
     data = deprivation_df,
     prior_intercept = normal(80, 1),
     prior = normal(location = c(-1, 1, 1), scale = c(0.25, 0.5, 0.25))
-    )
+  )
 
-life_expectancy_posterior <- as.matrix(life_expectancy_glm)
 ```
 
 ```{r glm-summary}
@@ -231,20 +247,20 @@ sjPlot::tab_model(life_expectancy_glm)
 life_expectancy_priors %>%
   bayestestR::sensitivity_to_prior() %>%
   kableExtra::kbl() %>%
-    kableExtra::kable_styling(
+  kableExtra::kable_styling(
     bootstrap_options = c("striped", "hover", "condensed"),
     fixed_thead = T
-    )
+  )
 
 # bayestestR::diagnostic_posterior(life_expectancy_glm)
 
 life_expectancy_priors %>%
   bayestestR::diagnostic_posterior() %>%
   kableExtra::kbl() %>%
-    kableExtra::kable_styling(
+  kableExtra::kable_styling(
     bootstrap_options = c("striped", "hover", "condensed"),
     fixed_thead = T
-    )
+  )
 
 ```
 
@@ -252,44 +268,51 @@ life_expectancy_priors %>%
 
 ```{r posterior-checks}
 
-bayesplot::ppc_dens_overlay(
-  y = life_expectancy_glm$y,
-  yrep = posterior_predict(
-    life_expectancy_glm,
-    draws = 50
-    )
-  ) +
-  labs(
-    title = "Posterior Predictive Checks Against Observed Data",
-    subtitle = "Samples Drawn from Posterior Predictive Distribution of Life Expectancy\nby IMD Score and Physiological & Behavioural Risk Factors",
-    x = "Life Expectancy"
-    ) +
-  theme(
-    legend.position = "top",
-    legend.text = element_text(size = 12)
-  )
+# posterior predictive checks
+
+life_expectancy_posterior <- as.matrix(life_expectancy_glm)
+
+#
+# bayesplot::ppc_dens_overlay(
+#   y = life_expectancy_glm$y,
+#   yrep = posterior_predict(
+#     life_expectancy_glm,
+#     draws = 50
+#     )
+#   ) +
+#   labs(
+#     title = "Posterior Predictive Checks Against Observed Data",
+#     subtitle = "Samples Drawn from Posterior Predictive Distribution of Life Expectancy\nby IMD Score and Physiological & Behavioural Risk Factors",
+#     x = "Life Expectancy"
+#     ) +
+#   theme(
+#     legend.position = "top",
+#     legend.text = element_text(size = 12)
+#   )
+
+life_expectancy_rep <- posterior_predict(life_expectancy_glm)
+
+n_sims <- nrow(life_expectancy_rep)
+subset <- sample(n_sims, 100)
+
+bayesplot::ppc_dens_overlay(deprivation_df$life_expectancy, life_expectancy_rep[subset, ])
 
 posterior_vs_prior(
   life_expectancy_glm,
   prob = 0.9,
   group_by_parameter = TRUE,
   facet_args = list(scales = "free")
-  ) +
+) +
   scale_colour_viridis_d() +
   theme_minimal() +
   theme(
     legend.position = "top",
     legend.title = element_blank()
-    )
-
-bayesplot::ppc_scatter_avg(
-  y = life_expectancy_glm$y,
-  yrep = posterior_predict(
-    life_expectancy_glm,
-    draws = 50
-    )
   )
 
+bayesplot::ppc_scatter_avg(
+  deprivation_df$life_expectancy, life_expectancy_rep[subset, ]
+)
 
 ```
 
@@ -301,17 +324,15 @@ bayestestR::hdi(
   life_expectancy_glm,
   ci = c(
     0.5, 0.75, 0.89, 0.95
-    )
-  ) %>%
+  )
+) %>%
   plot()
 
 
 bayestestR::map_estimate(
   life_expectancy_posterior
-  ) %>%
+) %>%
   plot()
-
-
 
 ```
 

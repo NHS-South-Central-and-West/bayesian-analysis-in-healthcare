@@ -82,19 +82,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="deprivation_files/libs/clipboard/clipboard.min.js"></script>
-<script src="deprivation_files/libs/quarto-html/quarto.js"></script>
-<script src="deprivation_files/libs/quarto-html/popper.min.js"></script>
-<script src="deprivation_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="deprivation_files/libs/quarto-html/anchor.min.js"></script>
-<link href="deprivation_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="deprivation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="deprivation_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="deprivation_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="deprivation_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="01-deprivation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="01-deprivation_files/libs/quarto-html/quarto.js"></script>
+<script src="01-deprivation_files/libs/quarto-html/popper.min.js"></script>
+<script src="01-deprivation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="01-deprivation_files/libs/quarto-html/anchor.min.js"></script>
+<link href="01-deprivation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="01-deprivation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="01-deprivation_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="01-deprivation_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="01-deprivation_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
-<script src="deprivation_files/libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="deprivation_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="01-deprivation_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="01-deprivation_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 </head>
@@ -148,6 +148,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="frequentist-vs-bayesian-statistics-a-primer" class="level2">
 <h2 class="anchored" data-anchor-id="frequentist-vs-bayesian-statistics-a-primer">Frequentist Vs Bayesian Statistics: A Primer</h2>
+<p>At its core, Frequentist vs Bayesian differences lie in the definition of probability.</p>
+<p>Frequentists think of probability in terms of frequencies. The probability of an event is a measure of the frequency of that event after repeated measurements. Bayesians, however, incorporate uncertainty as a part of probability.</p>
+<p>For Bayesians, probability is an attempt to define the plausability of a proposition/situation.</p>
+<p>In Bayesian statistics, the p-value is not a value, but a distribution (or in reality, the p-value is not relevant).</p>
+<p>At a very basic level, the fundamental difference between the Frequentist and Bayesian frameworks are that Bayesian inference includes any prior expectations and knowledge that can help in drawing inferences.</p>
+<p>Frequentist probability - If you ran the same simulation again and again, the probability that you observe the outcome</p>
+<p>Bayesian probability</p>
+<p>In reality, I think that Bayesian approaches to probability are a lot more intuitive than Frequentist approaches. You have to train your mind to think like a Frequentist, whereas our natural way of understanding probabilities is inherently Bayesian.</p>
 </section>
 <section id="visual-exploration-of-deprivation-and-health-inequalities-data" class="level2">
 <h2 class="anchored" data-anchor-id="visual-exploration-of-deprivation-and-health-inequalities-data">Visual Exploration of Deprivation and Health Inequalities Data</h2>
@@ -233,7 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(life_expectancy, imd_score)) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/imd-score-eda-1.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/imd-score-eda-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
@@ -241,13 +249,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(life_expectancy, physiological_risk_factors)) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/health-index-eda-1.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/health-index-eda-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>deprivation_df <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(life_expectancy, behavioural_risk_factors)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/health-index-eda-2.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/health-index-eda-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
@@ -284,19 +292,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
   <tr>
    <td style="text-align:left;"> life_expectancy </td>
-   <td style="text-align:right;"> -0.8394351 </td>
-   <td style="text-align:right;"> 0.9054810 </td>
-   <td style="text-align:right;"> 0.5676344 </td>
+   <td style="text-align:right;"> -0.8376145 </td>
+   <td style="text-align:right;"> 0.9052918 </td>
+   <td style="text-align:right;"> 0.5622864 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> physiological_risk_factors </td>
-   <td style="text-align:right;"> -0.3757950 </td>
-   <td style="text-align:right;"> 0.5421772 </td>
+   <td style="text-align:right;"> -0.3775529 </td>
+   <td style="text-align:right;"> 0.5418427 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> behavioural_risk_factors </td>
-   <td style="text-align:right;"> -0.8408222 </td>
+   <td style="text-align:right;"> -0.8406223 </td>
    <td style="text-align:right;">  </td>
    <td style="text-align:right;">  </td>
   </tr>
@@ -311,13 +319,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(imd_score, physiological_risk_factors)) <span class="sc">+</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/correlation-eda-1.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/correlation-eda-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>deprivation_df <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(imd_score, behavioural_risk_factors)) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/correlation-eda-2.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/correlation-eda-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>deprivation_df <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">imd_decile =</span> <span class="fu">as.factor</span>(imd_decile)) <span class="sc">%&gt;%</span></span>
@@ -327,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>Picking joint bandwidth of 3.2</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/correlation-eda-3.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/correlation-eda-3.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>deprivation_df <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">imd_decile =</span> <span class="fu">as.factor</span>(imd_decile)) <span class="sc">%&gt;%</span></span>
@@ -337,7 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>Picking joint bandwidth of 2.08</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/correlation-eda-4.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/correlation-eda-4.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The correlations are a little more obvious when plotted and inspected visually. The behavioural risk factors have a positive linear relationship with IMD (as the value of the risk factor goes up, so does IMD score/decile).</p>
@@ -493,7 +501,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(life_expectancy_priors, <span class="st">"hist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/prior-plot-1.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/prior-plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -506,9 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> deprivation_df,</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior_intercept =</span> <span class="fu">normal</span>(<span class="dv">80</span>, <span class="dv">1</span>),</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> <span class="fu">normal</span>(<span class="at">location =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="at">scale =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>))</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>life_expectancy_posterior <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(life_expectancy_glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(life_expectancy_glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -582,15 +588,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
   <tr>
    <td style="text-align:left;"> imd_transformed </td>
-   <td style="text-align:right;"> 3.499646 </td>
+   <td style="text-align:right;"> 3.503332 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> physiological_transformed </td>
-   <td style="text-align:right;"> 5.985531 </td>
+   <td style="text-align:right;"> 6.025386 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> behavioural_transformed </td>
-   <td style="text-align:right;"> 3.518477 </td>
+   <td style="text-align:right;"> 3.476546 </td>
   </tr>
 </tbody>
 </table>
@@ -619,27 +625,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
   <tr>
    <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:right;"> 1.0008923 </td>
-   <td style="text-align:right;"> 3255.141 </td>
-   <td style="text-align:right;"> 0.0184491 </td>
+   <td style="text-align:right;"> 0.9996414 </td>
+   <td style="text-align:right;"> 4216.395 </td>
+   <td style="text-align:right;"> 0.0153546 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> behavioural_transformed </td>
-   <td style="text-align:right;"> 1.0004767 </td>
-   <td style="text-align:right;"> 4122.283 </td>
-   <td style="text-align:right;"> 0.0037859 </td>
+   <td style="text-align:right;"> 0.9996652 </td>
+   <td style="text-align:right;"> 4080.920 </td>
+   <td style="text-align:right;"> 0.0039289 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> imd_transformed </td>
-   <td style="text-align:right;"> 1.0009247 </td>
-   <td style="text-align:right;"> 3738.806 </td>
-   <td style="text-align:right;"> 0.0041557 </td>
+   <td style="text-align:right;"> 0.9997422 </td>
+   <td style="text-align:right;"> 4044.542 </td>
+   <td style="text-align:right;"> 0.0039873 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> physiological_transformed </td>
-   <td style="text-align:right;"> 0.9998031 </td>
-   <td style="text-align:right;"> 4388.838 </td>
-   <td style="text-align:right;"> 0.0074416 </td>
+   <td style="text-align:right;"> 1.0000785 </td>
+   <td style="text-align:right;"> 3697.928 </td>
+   <td style="text-align:right;"> 0.0082695 </td>
   </tr>
 </tbody>
 </table>
@@ -650,24 +656,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="posterior-checks" class="level3">
 <h3 class="anchored" data-anchor-id="posterior-checks">Posterior Checks</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>bayesplot<span class="sc">::</span><span class="fu">ppc_dens_overlay</span>(</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> life_expectancy_glm<span class="sc">$</span>y,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">yrep =</span> <span class="fu">posterior_predict</span>(</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    life_expectancy_glm,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">draws =</span> <span class="dv">50</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Posterior Predictive Checks Against Observed Data"</span>,</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Samples Drawn from Posterior Predictive Distribution of Life Expectancy</span><span class="sc">\n</span><span class="st">by IMD Score and Physiological &amp; Behavioural Risk Factors"</span>,</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Life Expectancy"</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>)</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># posterior predictive checks</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>life_expectancy_posterior <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(life_expectancy_glm)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bayesplot::ppc_dens_overlay(</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   y = life_expectancy_glm$y,</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   yrep = posterior_predict(</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     life_expectancy_glm,</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     draws = 50</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   ) +</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   labs(</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     title = "Posterior Predictive Checks Against Observed Data",</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">#     subtitle = "Samples Drawn from Posterior Predictive Distribution of Life Expectancy\nby IMD Score and Physiological &amp; Behavioural Risk Factors",</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">#     x = "Life Expectancy"</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">#     ) +</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">#   theme(</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co">#     legend.position = "top",</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co">#     legend.text = element_text(size = 12)</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>life_expectancy_rep <span class="ot">&lt;-</span> <span class="fu">posterior_predict</span>(life_expectancy_glm)</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>n_sims <span class="ot">&lt;-</span> <span class="fu">nrow</span>(life_expectancy_rep)</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> <span class="fu">sample</span>(n_sims, <span class="dv">100</span>)</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>bayesplot<span class="sc">::</span><span class="fu">ppc_dens_overlay</span>(deprivation_df<span class="sc">$</span>life_expectancy, life_expectancy_rep[subset,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/posterior-checks-1.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/posterior-checks-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">posterior_vs_prior</span>(</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  life_expectancy_glm,</span>
@@ -686,17 +704,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Drawing from prior...</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/posterior-checks-2.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/posterior-checks-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>bayesplot<span class="sc">::</span><span class="fu">ppc_scatter_avg</span>(</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> life_expectancy_glm<span class="sc">$</span>y,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">yrep =</span> <span class="fu">posterior_predict</span>(</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    life_expectancy_glm,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">draws =</span> <span class="dv">50</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  deprivation_df<span class="sc">$</span>life_expectancy, life_expectancy_rep[subset,]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/posterior-checks-3.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/posterior-checks-3.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -711,14 +725,14 @@ Drawing from prior...</code></pre>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/parameter-values-1.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/parameter-values-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>bayestestR<span class="sc">::</span><span class="fu">map_estimate</span>(</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  life_expectancy_posterior</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="deprivation_files/figure-html/parameter-values-2.png" class="img-fluid" width="672"></p>
+<p><img src="01-deprivation_files/figure-html/parameter-values-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
