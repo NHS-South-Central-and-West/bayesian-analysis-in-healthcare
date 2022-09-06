@@ -36,23 +36,11 @@ jobs:
       - name: Render Quarto Files
         uses: quarto-dev/quarto-actions/render@v2
 
-      - name: Commit Rendered Files
-        id: commit
+      - name: Commit & Push Changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "github-actions"
-          git add --all
-          if [-z "$(git status --porcelain)"]; then
-              echo "::set-output name=push::false"
-          else
-              git commit -m "(GHA) Render Quarto files" -a
-              echo "::set-output name=push::true"
+          git config user.name "GitHub Actions"
+          git config user.email "action@github.com"
+          if output=$(git status --porcelain) && [ ! -z "$output" ]; then
+            git commit -m "(GHA) Render Quarto files" -a
+            git push
           fi
-          shell: bash
-
-      - name: Push Changes
-        if: steps.commit.outputs.push == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-  
