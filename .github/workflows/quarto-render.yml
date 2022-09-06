@@ -29,7 +29,7 @@ jobs:
         with:
           extra-packages: rcmdcheck BH RcppParallel RcppEigen Rcpp rstan StanHeaders
         
-      - Restore Project Dependencies from Lockfile
+      - name: Restore Project Dependencies from Lockfile
         uses: r-lib/actions/setup-renv@v2
         with:
           cache-version: 1
