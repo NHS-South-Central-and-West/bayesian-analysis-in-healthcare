@@ -31,9 +31,7 @@ jobs:
     
       - name: Install Linux System Dependencies
         run: |
-          sudo apt-get install libharfbuzz-dev
-          sudo apt-get install libfribidi-dev
-          sudo apt-get install libxml2
+          sudo apt-get install -y libglpk-dev
           while read -r cmd
           do
             eval sudo $cmd
