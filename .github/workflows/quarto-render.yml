@@ -28,6 +28,14 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
         with:
           cache-version: 1
+    
+      - name: Install Linux System Dependencies
+        run: |
+          sudo apt-get install -y libglpk-dev
+          while read -r cmd
+          do
+            eval sudo $cmd
+          done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
   
       - name: Render Quarto Files
         uses: quarto-dev/quarto-actions/render@v2
