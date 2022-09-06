@@ -1703,6 +1703,21 @@
         "viridisLite"
       ]
     },
+    "see": {
+      "Package": "see",
+      "Version": "0.7.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "5301af3b3ad885ff9b1b18c84ac736bd",
+      "Requirements": [
+        "bayestestR",
+        "datawizard",
+        "effectsize",
+        "ggplot2",
+        "insight",
+        "parameters"
+      ]
+    },
     "selectr": {
       "Package": "selectr",
       "Version": "0.4-2",
