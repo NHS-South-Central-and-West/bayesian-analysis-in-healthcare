@@ -21,16 +21,20 @@ theme_set(theme_minimal(base_family = "sans", base_size = 12)) +
     legend.position = "top",
     legend.title = element_blank(),
     plot.margin = unit(c(0.5, 1, 1, 1), "cm")
-    ) 
+  )
 # set bayesplot colour scheme
 bayesplot::color_scheme_set("teal")
 
-# set n/a to blank in table output
-options(knitr.kable.NA = '')
+# replace na with empty string in table outputs
+options(
+  knitr.kable.NA = "",
+  knitr.table.format = "pipe"
+)
 
 # import data
-deprivation_df <- 
+deprivation_df <-
   readr::read_rds(here::here("data", "deprivation.rds"))
+
 ```
 
 
@@ -66,11 +70,7 @@ deprivation_df %>%
     -skew, -kurtosis, -se, -range
   ) %>%
   relocate(sd, .after = median) %>%
-  kableExtra::kbl() %>%
-  kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    fixed_thead = T
-  )
+  knitr::kable(digits = 2)
 
 deprivation_df %>%
   ggplot(aes(life_expectancy, imd_score)) +
@@ -104,11 +104,7 @@ deprivation_df %>%
   summarise_all(.funs = "mean") %>%
   correlation::correlation(bayesian = TRUE) %>%
   summary() %>%
-  kableExtra::kbl() %>%
-  kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    fixed_thead = T
-  )
+  knitr::kable(digit = 2)
 
 ```
 
@@ -168,7 +164,6 @@ life_expectancy_ols <-
   )
 
 sjPlot::tab_model(life_expectancy_ols)
-
 ```
 
 The results suggest that each of the explanatory variables has a small but significant effect on life expectancy. As deprivation increases (IMD score increases), life expectancy decreases, while as the index score representing physiological and behavioural risk factors (meaning a better performance in that Health Index subdomain) increases, life expectancy increases.
@@ -209,11 +204,8 @@ We can see a summary of our priors here:
 
 life_expectancy_priors %>%
   bayestestR::describe_prior() %>%
-  kableExtra::kbl() %>%
-  kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    fixed_thead = T
-  )
+  knitr::kable(digits = 2)
+
 ```
 
 The prior distributions look pretty sensible:
@@ -255,21 +247,13 @@ sjPlot::tab_model(life_expectancy_glm)
 
 life_expectancy_priors %>%
   bayestestR::sensitivity_to_prior() %>%
-  kableExtra::kbl() %>%
-  kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    fixed_thead = T
-  )
+  knitr::kable(digits = 2)
 
 # bayestestR::diagnostic_posterior(life_expectancy_glm)
 
 life_expectancy_priors %>%
   bayestestR::diagnostic_posterior() %>%
-  kableExtra::kbl() %>%
-  kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    fixed_thead = T
-  )
+  knitr::kable(digits = 2)
 
 ```
 
