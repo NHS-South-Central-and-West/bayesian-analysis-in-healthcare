@@ -43,6 +43,7 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "action@github.com"
           if output=$(git status --porcelain) && [ ! -z "$output" ]; then
+            git add --all
             git commit -m "(GHA) Render Quarto files" -a
             git push
           fi
