@@ -4,6 +4,7 @@ project:
   output-dir: _tmp
 
 toc: true
+prefer-html: true
 
 format:
   gfm:
