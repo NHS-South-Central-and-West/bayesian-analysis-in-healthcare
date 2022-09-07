@@ -70,7 +70,14 @@ deprivation_df %>%
   )
 ```
 
-[TABLE]
+|                            |       mean |    median |        sd |       min |       max |
+|:---------------------------|-----------:|----------:|----------:|----------:|----------:|
+| life_expectancy            |  81.148214 |  81.15723 |  1.554173 |  76.85814 |  85.22368 |
+| mortality                  | 193.020921 | 189.99839 | 39.418309 | 118.90000 | 328.37085 |
+| imd_score                  |  23.174205 |  22.83750 |  8.045406 |   5.84600 |  45.03900 |
+| imd_decile                 |   5.445206 |   5.00000 |  2.828502 |   1.00000 |  10.00000 |
+| physiological_risk_factors |  99.684589 |  98.70000 |  9.717607 |  80.20000 | 125.90000 |
+| behavioural_risk_factors   |  99.361301 | 100.60000 |  8.611750 |  72.40000 | 118.30000 |
 
 ``` r
 deprivation_df %>%
@@ -78,7 +85,7 @@ deprivation_df %>%
   geom_point()
 ```
 
-![](01-deprivation_files/figure-commonmark/imd-score-eda-1.png)
+![](01-deprivation_files/figure-gfm/imd-score-eda-1.png)
 
 ``` r
 deprivation_df %>%
@@ -86,7 +93,7 @@ deprivation_df %>%
   geom_point()
 ```
 
-![](01-deprivation_files/figure-commonmark/health-index-eda-1.png)
+![](01-deprivation_files/figure-gfm/health-index-eda-1.png)
 
 ``` r
 deprivation_df %>%
@@ -94,7 +101,7 @@ deprivation_df %>%
   geom_point()
 ```
 
-![](01-deprivation_files/figure-commonmark/health-index-eda-2.png)
+![](01-deprivation_files/figure-gfm/health-index-eda-2.png)
 
 ``` r
 deprivation_df %>%
@@ -115,7 +122,11 @@ deprivation_df %>%
   )
 ```
 
-[TABLE]
+| Parameter                  |  imd_score | behavioural_risk_factors | physiological_risk_factors |
+|:---------------------------|-----------:|-------------------------:|---------------------------:|
+| life_expectancy            | -0.8383345 |                0.9059676 |                  0.5615351 |
+| physiological_risk_factors | -0.3778464 |                0.5417563 |                            |
+| behavioural_risk_factors   | -0.8404357 |                          |                            |
 
 There are strong correlations between life expectancy and the three
 independent variables, however, the correlation between IMD score and
@@ -128,7 +139,7 @@ deprivation_df %>%
   geom_point()
 ```
 
-![](01-deprivation_files/figure-commonmark/correlation-eda-1.png)
+![](01-deprivation_files/figure-gfm/correlation-eda-1.png)
 
 ``` r
 deprivation_df %>%
@@ -136,7 +147,7 @@ deprivation_df %>%
   geom_point()
 ```
 
-![](01-deprivation_files/figure-commonmark/correlation-eda-2.png)
+![](01-deprivation_files/figure-gfm/correlation-eda-2.png)
 
 ``` r
 deprivation_df %>%
@@ -145,7 +156,7 @@ deprivation_df %>%
   ggridges::geom_density_ridges()
 ```
 
-![](01-deprivation_files/figure-commonmark/correlation-eda-3.png)
+![](01-deprivation_files/figure-gfm/correlation-eda-3.png)
 
 ``` r
 deprivation_df %>%
@@ -154,7 +165,7 @@ deprivation_df %>%
   ggridges::geom_density_ridges()
 ```
 
-![](01-deprivation_files/figure-commonmark/correlation-eda-4.png)
+![](01-deprivation_files/figure-gfm/correlation-eda-4.png)
 
 The correlations are a little more obvious when plotted and inspected
 visually. The behavioural risk factors have a positive linear
@@ -194,7 +205,15 @@ life_expectancy_ols <-
 sjPlot::tab_model(life_expectancy_ols)
 ```
 
-[TABLE]
+|                           | life expectancy |               |             |
+|:-------------------------:|:---------------:|:-------------:|:-----------:|
+|        Predictors         |    Estimates    |      CI       |      p      |
+|        (Intercept)        |      81.22      | 81.15 – 81.29 | **\<0.001** |
+|      imd transformed      |      -0.07      | -0.08 – -0.05 | **\<0.001** |
+| physiological transformed |      0.02       |  0.02 – 0.03  | **\<0.001** |
+|  behavioural transformed  |      0.10       |  0.08 – 0.11  | **\<0.001** |
+|       Observations        |       292       |               |             |
+|     R² / R² adjusted      |  0.856 / 0.854  |               |             |
 
 The results suggest that each of the explanatory variables has a small
 but significant effect on life expectancy. As deprivation increases (IMD
@@ -254,7 +273,12 @@ life_expectancy_priors %>%
   )
 ```
 
-[TABLE]
+| Parameter                 | Prior_Distribution | Prior_Location | Prior_Scale |
+|:--------------------------|:-------------------|---------------:|------------:|
+| (Intercept)               | normal             |             80 |        1.00 |
+| imd_transformed           | normal             |             -1 |        0.25 |
+| physiological_transformed | normal             |              1 |        0.50 |
+| behavioural_transformed   | normal             |              1 |        0.25 |
 
 The prior distributions look pretty sensible:
 
@@ -262,7 +286,7 @@ The prior distributions look pretty sensible:
 plot(life_expectancy_priors, "hist")
 ```
 
-![](01-deprivation_files/figure-commonmark/prior-plot-1.png)
+![](01-deprivation_files/figure-gfm/prior-plot-1.png)
 
 ### Specify Stan Model
 
@@ -280,7 +304,15 @@ life_expectancy_glm <-
 sjPlot::tab_model(life_expectancy_glm)
 ```
 
-[TABLE]
+|                           | life expectancy |               |
+|:-------------------------:|:---------------:|:-------------:|
+|        Predictors         |    Estimates    |   CI (95%)    |
+|        (Intercept)        |      81.22      | 81.15 – 81.29 |
+|      imd transformed      |      -0.07      | -0.08 – -0.05 |
+| physiological transformed |      0.02       |  0.02 – 0.03  |
+|  behavioural transformed  |      0.10       |  0.08 – 0.11  |
+|       Observations        |       292       |               |
+|         R² Bayes          |      0.854      |               |
 
 ### Diagnostic Checks
 
@@ -296,7 +328,11 @@ life_expectancy_priors %>%
   )
 ```
 
-[TABLE]
+| Parameter                 | Sensitivity_Median |
+|:--------------------------|-------------------:|
+| imd_transformed           |           3.482177 |
+| physiological_transformed |           5.956712 |
+| behavioural_transformed   |           3.521973 |
 
 ``` r
 # bayestestR::diagnostic_posterior(life_expectancy_glm)
@@ -310,7 +346,12 @@ life_expectancy_priors %>%
   )
 ```
 
-[TABLE]
+| Parameter                 |      Rhat |      ESS |      MCSE |
+|:--------------------------|----------:|---------:|----------:|
+| (Intercept)               | 1.0003483 | 4582.883 | 0.0146028 |
+| behavioural_transformed   | 1.0000764 | 4721.185 | 0.0036731 |
+| imd_transformed           | 0.9996527 | 5054.966 | 0.0035122 |
+| physiological_transformed | 0.9992952 | 4448.582 | 0.0073616 |
 
 ### Posterior Checks
 
@@ -345,7 +386,7 @@ subset <- sample(n_sims, 100)
 bayesplot::ppc_dens_overlay(deprivation_df$life_expectancy, life_expectancy_rep[subset, ])
 ```
 
-![](01-deprivation_files/figure-commonmark/posterior-checks-1.png)
+![](01-deprivation_files/figure-gfm/posterior-checks-1.png)
 
 ``` r
 posterior_vs_prior(
@@ -362,7 +403,7 @@ posterior_vs_prior(
   )
 ```
 
-![](01-deprivation_files/figure-commonmark/posterior-checks-2.png)
+![](01-deprivation_files/figure-gfm/posterior-checks-2.png)
 
 ``` r
 bayesplot::ppc_scatter_avg(
@@ -370,7 +411,7 @@ bayesplot::ppc_scatter_avg(
 )
 ```
 
-![](01-deprivation_files/figure-commonmark/posterior-checks-3.png)
+![](01-deprivation_files/figure-gfm/posterior-checks-3.png)
 
 ### Estimated Parameter Values
 
@@ -384,7 +425,7 @@ bayestestR::hdi(
   plot()
 ```
 
-![](01-deprivation_files/figure-commonmark/parameter-values-1.png)
+![](01-deprivation_files/figure-gfm/parameter-values-1.png)
 
 ``` r
 bayestestR::map_estimate(
@@ -393,7 +434,7 @@ bayestestR::map_estimate(
   plot()
 ```
 
-![](01-deprivation_files/figure-commonmark/parameter-values-2.png)
+![](01-deprivation_files/figure-gfm/parameter-values-2.png)
 
 ## Explore Stan Model Using Shiny
 
