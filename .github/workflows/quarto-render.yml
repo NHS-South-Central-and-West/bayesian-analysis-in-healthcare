@@ -37,7 +37,6 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
         with:
           to: "all"
-          path: output
 
       - name: Commit Results
         run: |
