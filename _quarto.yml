@@ -4,15 +4,8 @@ project:
   output-dir: _tmp
 
 toc: true
-toc-depth: 3
-prefer-html: true
 
 format:
-  html:
-    fig-align: center
-    warning: false
-    theme: lumen
-    highlight-style: github
   gfm:
     fig-align: center
     warning: false
