@@ -8,17 +8,27 @@ date: "`r Sys.Date()`"
 ```{r setup}
 #| include: false
 
+# import packages
 suppressPackageStartupMessages({
   library(dplyr)
   library(ggplot2)
   library(rstanarm)
 })
 
-theme_set(theme_minimal(base_family = "sans"))
+# set plot theme
+theme_set(theme_minimal(base_family = "sans", base_size = 12)) +
+  theme_update(
+    legend.position = "top",
+    legend.title = element_blank(),
+    plot.margin = unit(c(0.5, 1, 1, 1), "cm")
+    ) 
+# set bayesplot colour scheme
 bayesplot::color_scheme_set("teal")
 
+# set n/a to blank in table output
 options(knitr.kable.NA = '')
 
+# import data
 deprivation_df <- 
   readr::read_rds(here::here("data", "deprivation.rds"))
 ```
@@ -283,11 +293,7 @@ life_expectancy_posterior <- as.matrix(life_expectancy_glm)
 #     title = "Posterior Predictive Checks Against Observed Data",
 #     subtitle = "Samples Drawn from Posterior Predictive Distribution of Life Expectancy\nby IMD Score and Physiological & Behavioural Risk Factors",
 #     x = "Life Expectancy"
-#     ) +
-#   theme(
-#     legend.position = "top",
-#     legend.text = element_text(size = 12)
-#   )
+#     )
 
 life_expectancy_rep <- posterior_predict(life_expectancy_glm)
 
@@ -302,12 +308,7 @@ posterior_vs_prior(
   group_by_parameter = TRUE,
   facet_args = list(scales = "free")
 ) +
-  scale_colour_viridis_d() +
-  theme_minimal() +
-  theme(
-    legend.position = "top",
-    legend.title = element_blank()
-  )
+  scale_colour_viridis_d()
 
 bayesplot::ppc_scatter_avg(
   deprivation_df$life_expectancy, life_expectancy_rep[subset, ]
