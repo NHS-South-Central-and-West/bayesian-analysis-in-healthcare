@@ -36,9 +36,7 @@ jobs:
       - name: Render Quarto Files
         uses: quarto-dev/quarto-actions/render@v2
         with:
-          to: 
-            -   html
-            -   gfm
+          to: [html, gfm]
 
       - name: Commit & Push Changes
         run: |
