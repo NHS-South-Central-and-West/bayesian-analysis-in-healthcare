@@ -199,19 +199,19 @@ deprivation_df %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> life_expectancy </td>
-   <td style="text-align:right;"> -0.8373647 </td>
-   <td style="text-align:right;"> 0.9059651 </td>
-   <td style="text-align:right;"> 0.5627486 </td>
+   <td style="text-align:right;"> -0.8373630 </td>
+   <td style="text-align:right;"> 0.9047613 </td>
+   <td style="text-align:right;"> 0.5650861 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> physiological_risk_factors </td>
-   <td style="text-align:right;"> -0.3753125 </td>
-   <td style="text-align:right;"> 0.5429674 </td>
+   <td style="text-align:right;"> -0.3758545 </td>
+   <td style="text-align:right;"> 0.5442980 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> behavioural_risk_factors </td>
-   <td style="text-align:right;"> -0.8390791 </td>
+   <td style="text-align:right;"> -0.8403891 </td>
    <td style="text-align:right;">  </td>
    <td style="text-align:right;">  </td>
   </tr>
@@ -525,15 +525,15 @@ life_expectancy_priors %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> imd_transformed </td>
-   <td style="text-align:right;"> 3.508099 </td>
+   <td style="text-align:right;"> 3.503051 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> physiological_transformed </td>
-   <td style="text-align:right;"> 5.987570 </td>
+   <td style="text-align:right;"> 6.018391 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> behavioural_transformed </td>
-   <td style="text-align:right;"> 3.494374 </td>
+   <td style="text-align:right;"> 3.496494 </td>
   </tr>
 </tbody>
 </table>
@@ -562,27 +562,27 @@ life_expectancy_priors %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:right;"> 0.9994797 </td>
-   <td style="text-align:right;"> 4350.612 </td>
-   <td style="text-align:right;"> 0.0155221 </td>
+   <td style="text-align:right;"> 1.0009385 </td>
+   <td style="text-align:right;"> 3897.009 </td>
+   <td style="text-align:right;"> 0.0164029 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> behavioural_transformed </td>
-   <td style="text-align:right;"> 0.9999152 </td>
-   <td style="text-align:right;"> 4239.349 </td>
-   <td style="text-align:right;"> 0.0038527 </td>
+   <td style="text-align:right;"> 0.9996937 </td>
+   <td style="text-align:right;"> 4327.520 </td>
+   <td style="text-align:right;"> 0.0037689 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> imd_transformed </td>
-   <td style="text-align:right;"> 0.9993865 </td>
-   <td style="text-align:right;"> 4020.936 </td>
-   <td style="text-align:right;"> 0.0039188 </td>
+   <td style="text-align:right;"> 0.9995297 </td>
+   <td style="text-align:right;"> 4212.894 </td>
+   <td style="text-align:right;"> 0.0039020 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> physiological_transformed </td>
-   <td style="text-align:right;"> 0.9996228 </td>
-   <td style="text-align:right;"> 4574.671 </td>
-   <td style="text-align:right;"> 0.0074456 </td>
+   <td style="text-align:right;"> 1.0000239 </td>
+   <td style="text-align:right;"> 4611.807 </td>
+   <td style="text-align:right;"> 0.0072445 </td>
   </tr>
 </tbody>
 </table>
