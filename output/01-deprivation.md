@@ -7,19 +7,30 @@ Paul Johnson
 <link href="01-deprivation_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
-- [Frequentist Vs Bayesian Statistics: A
-  Primer](#frequentist-vs-bayesian-statistics-a-primer)
-- [Visual Exploration of Deprivation and Health Inequalities
-  Data](#visual-exploration-of-deprivation-and-health-inequalities-data)
-- [Linear Regression the Frequentist
-  Way](#linear-regression-the-frequentist-way)
-- [Bayesian Regression](#bayesian-regression)
-  - [Setting Priors](#setting-priors)
-  - [Specify Stan Model](#specify-stan-model)
-  - [Diagnostic Checks](#diagnostic-checks)
-  - [Posterior Checks](#posterior-checks)
-  - [Estimated Parameter Values](#estimated-parameter-values)
-- [Explore Stan Model Using Shiny](#explore-stan-model-using-shiny)
+- <a href="#frequentist-vs-bayesian-statistics-a-primer"
+  id="toc-frequentist-vs-bayesian-statistics-a-primer">Frequentist Vs
+  Bayesian Statistics: A Primer</a>
+- <a
+  href="#visual-exploration-of-deprivation-and-health-inequalities-data"
+  id="toc-visual-exploration-of-deprivation-and-health-inequalities-data">Visual
+  Exploration of Deprivation and Health Inequalities Data</a>
+- <a href="#linear-regression-the-frequentist-way"
+  id="toc-linear-regression-the-frequentist-way">Linear Regression the
+  Frequentist Way</a>
+- <a href="#bayesian-regression" id="toc-bayesian-regression">Bayesian
+  Regression</a>
+  - <a href="#setting-priors" id="toc-setting-priors">Setting Priors</a>
+  - <a href="#specify-stan-model" id="toc-specify-stan-model">Specify Stan
+    Model</a>
+  - <a href="#diagnostic-checks" id="toc-diagnostic-checks">Diagnostic
+    Checks</a>
+  - <a href="#posterior-checks" id="toc-posterior-checks">Posterior
+    Checks</a>
+  - <a href="#estimated-parameter-values"
+    id="toc-estimated-parameter-values">Estimated Parameter Values</a>
+- <a href="#explore-stan-model-using-shiny"
+  id="toc-explore-stan-model-using-shiny">Explore Stan Model Using
+  Shiny</a>
 
 ## Frequentist Vs Bayesian Statistics: A Primer
 
@@ -70,14 +81,68 @@ deprivation_df %>%
   )
 ```
 
-|                            |       mean |    median |        sd |       min |       max |
-|:---------------------------|-----------:|----------:|----------:|----------:|----------:|
-| life_expectancy            |  81.148214 |  81.15723 |  1.554173 |  76.85814 |  85.22368 |
-| mortality                  | 193.020921 | 189.99839 | 39.418309 | 118.90000 | 328.37085 |
-| imd_score                  |  23.174205 |  22.83750 |  8.045406 |   5.84600 |  45.03900 |
-| imd_decile                 |   5.445206 |   5.00000 |  2.828502 |   1.00000 |  10.00000 |
-| physiological_risk_factors |  99.684589 |  98.70000 |  9.717607 |  80.20000 | 125.90000 |
-| behavioural_risk_factors   |  99.361301 | 100.60000 |  8.611750 |  72.40000 | 118.30000 |
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">   </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> mean </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> sd </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> min </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> max </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> life_expectancy </td>
+   <td style="text-align:right;"> 81.148214 </td>
+   <td style="text-align:right;"> 81.15723 </td>
+   <td style="text-align:right;"> 1.554173 </td>
+   <td style="text-align:right;"> 76.85814 </td>
+   <td style="text-align:right;"> 85.22368 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> mortality </td>
+   <td style="text-align:right;"> 193.020921 </td>
+   <td style="text-align:right;"> 189.99839 </td>
+   <td style="text-align:right;"> 39.418309 </td>
+   <td style="text-align:right;"> 118.90000 </td>
+   <td style="text-align:right;"> 328.37085 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> imd_score </td>
+   <td style="text-align:right;"> 23.174205 </td>
+   <td style="text-align:right;"> 22.83750 </td>
+   <td style="text-align:right;"> 8.045406 </td>
+   <td style="text-align:right;"> 5.84600 </td>
+   <td style="text-align:right;"> 45.03900 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> imd_decile </td>
+   <td style="text-align:right;"> 5.445206 </td>
+   <td style="text-align:right;"> 5.00000 </td>
+   <td style="text-align:right;"> 2.828502 </td>
+   <td style="text-align:right;"> 1.00000 </td>
+   <td style="text-align:right;"> 10.00000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> physiological_risk_factors </td>
+   <td style="text-align:right;"> 99.684589 </td>
+   <td style="text-align:right;"> 98.70000 </td>
+   <td style="text-align:right;"> 9.717607 </td>
+   <td style="text-align:right;"> 80.20000 </td>
+   <td style="text-align:right;"> 125.90000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> behavioural_risk_factors </td>
+   <td style="text-align:right;"> 99.361301 </td>
+   <td style="text-align:right;"> 100.60000 </td>
+   <td style="text-align:right;"> 8.611750 </td>
+   <td style="text-align:right;"> 72.40000 </td>
+   <td style="text-align:right;"> 118.30000 </td>
+  </tr>
+</tbody>
+</table>
 
 ``` r
 deprivation_df %>%
@@ -122,11 +187,36 @@ deprivation_df %>%
   )
 ```
 
-| Parameter                  |  imd_score | behavioural_risk_factors | physiological_risk_factors |
-|:---------------------------|-----------:|-------------------------:|---------------------------:|
-| life_expectancy            | -0.8390546 |                0.9053134 |                  0.5643304 |
-| physiological_risk_factors | -0.3760590 |                0.5437072 |                            |
-| behavioural_risk_factors   | -0.8402625 |                          |                            |
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Parameter </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> imd_score </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> behavioural_risk_factors </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> physiological_risk_factors </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> life_expectancy </td>
+   <td style="text-align:right;"> -0.8392544 </td>
+   <td style="text-align:right;"> 0.9054747 </td>
+   <td style="text-align:right;"> 0.563639 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> physiological_risk_factors </td>
+   <td style="text-align:right;"> -0.3784489 </td>
+   <td style="text-align:right;"> 0.5418544 </td>
+   <td style="text-align:right;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> behavioural_risk_factors </td>
+   <td style="text-align:right;"> -0.8412426 </td>
+   <td style="text-align:right;">  </td>
+   <td style="text-align:right;">  </td>
+  </tr>
+</tbody>
+</table>
 
 There are strong correlations between life expectancy and the three
 independent variables, however, the correlation between IMD score and
@@ -205,15 +295,51 @@ life_expectancy_ols <-
 sjPlot::tab_model(life_expectancy_ols)
 ```
 
-|                           | life expectancy |               |             |
-|:-------------------------:|:---------------:|:-------------:|:-----------:|
-|        Predictors         |    Estimates    |      CI       |      p      |
-|        (Intercept)        |      81.22      | 81.15 – 81.29 | **\<0.001** |
-|      imd transformed      |      -0.07      | -0.08 – -0.05 | **\<0.001** |
-| physiological transformed |      0.02       |  0.02 – 0.03  | **\<0.001** |
-|  behavioural transformed  |      0.10       |  0.08 – 0.11  | **\<0.001** |
-|       Observations        |       292       |               |             |
-|     R² / R² adjusted      |  0.856 / 0.854  |               |             |
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">life expectancy</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">p</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Intercept)</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">81.22</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">81.15&nbsp;&ndash;&nbsp;81.29</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">imd transformed</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.07</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.08&nbsp;&ndash;&nbsp;-0.05</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">physiological transformed</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.02</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.02&nbsp;&ndash;&nbsp;0.03</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">behavioural transformed</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.08&nbsp;&ndash;&nbsp;0.11</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">292</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">0.856 / 0.854</td>
+</tr>
+
+</table>
 
 The results suggest that each of the explanatory variables has a small
 but significant effect on life expectancy. As deprivation increases (IMD
@@ -273,12 +399,42 @@ life_expectancy_priors %>%
   )
 ```
 
-| Parameter                 | Prior_Distribution | Prior_Location | Prior_Scale |
-|:--------------------------|:-------------------|---------------:|------------:|
-| (Intercept)               | normal             |             80 |        1.00 |
-| imd_transformed           | normal             |             -1 |        0.25 |
-| physiological_transformed | normal             |              1 |        0.50 |
-| behavioural_transformed   | normal             |              1 |        0.25 |
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Parameter </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Prior_Distribution </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Prior_Location </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Prior_Scale </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> (Intercept) </td>
+   <td style="text-align:left;"> normal </td>
+   <td style="text-align:right;"> 80 </td>
+   <td style="text-align:right;"> 1.00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> imd_transformed </td>
+   <td style="text-align:left;"> normal </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 0.25 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> physiological_transformed </td>
+   <td style="text-align:left;"> normal </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.50 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> behavioural_transformed </td>
+   <td style="text-align:left;"> normal </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.25 </td>
+  </tr>
+</tbody>
+</table>
 
 The prior distributions look pretty sensible:
 
@@ -304,15 +460,46 @@ life_expectancy_glm <-
 sjPlot::tab_model(life_expectancy_glm)
 ```
 
-|                           | life expectancy |               |
-|:-------------------------:|:---------------:|:-------------:|
-|        Predictors         |    Estimates    |   CI (95%)    |
-|        (Intercept)        |      81.22      | 81.15 – 81.28 |
-|      imd transformed      |      -0.07      | -0.08 – -0.05 |
-| physiological transformed |      0.02       |  0.02 – 0.03  |
-|  behavioural transformed  |      0.10       |  0.08 – 0.11  |
-|       Observations        |       292       |               |
-|         R² Bayes          |      0.855      |               |
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">life expectancy</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI (95%)</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Intercept)</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">81.22</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">81.15&nbsp;&ndash;&nbsp;81.29</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">imd transformed</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.07</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.08&nbsp;&ndash;&nbsp;-0.05</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">physiological transformed</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.02</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.02&nbsp;&ndash;&nbsp;0.03</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">behavioural transformed</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.08&nbsp;&ndash;&nbsp;0.11</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">292</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">R<sup>2</sup> Bayes</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.854</td>
+</tr>
+
+</table>
 
 ### Diagnostic Checks
 
@@ -328,11 +515,28 @@ life_expectancy_priors %>%
   )
 ```
 
-| Parameter                 | Sensitivity_Median |
-|:--------------------------|-------------------:|
-| imd_transformed           |           3.513966 |
-| physiological_transformed |           6.062216 |
-| behavioural_transformed   |           3.503090 |
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Parameter </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Sensitivity_Median </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> imd_transformed </td>
+   <td style="text-align:right;"> 3.476039 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> physiological_transformed </td>
+   <td style="text-align:right;"> 6.067614 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> behavioural_transformed </td>
+   <td style="text-align:right;"> 3.509453 </td>
+  </tr>
+</tbody>
+</table>
 
 ``` r
 # bayestestR::diagnostic_posterior(life_expectancy_glm)
@@ -346,12 +550,42 @@ life_expectancy_priors %>%
   )
 ```
 
-| Parameter                 |      Rhat |      ESS |      MCSE |
-|:--------------------------|----------:|---------:|----------:|
-| (Intercept)               | 0.9995156 | 4855.888 | 0.0149108 |
-| behavioural_transformed   | 0.9992264 | 4706.140 | 0.0036819 |
-| imd_transformed           | 0.9997823 | 5081.200 | 0.0035480 |
-| physiological_transformed | 0.9994013 | 4566.234 | 0.0077154 |
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Parameter </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Rhat </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> ESS </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> MCSE </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> (Intercept) </td>
+   <td style="text-align:right;"> 0.9994310 </td>
+   <td style="text-align:right;"> 4601.805 </td>
+   <td style="text-align:right;"> 0.0154523 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> behavioural_transformed </td>
+   <td style="text-align:right;"> 0.9999069 </td>
+   <td style="text-align:right;"> 4331.096 </td>
+   <td style="text-align:right;"> 0.0039422 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> imd_transformed </td>
+   <td style="text-align:right;"> 0.9996066 </td>
+   <td style="text-align:right;"> 4156.779 </td>
+   <td style="text-align:right;"> 0.0039036 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> physiological_transformed </td>
+   <td style="text-align:right;"> 0.9996796 </td>
+   <td style="text-align:right;"> 4452.416 </td>
+   <td style="text-align:right;"> 0.0074020 </td>
+  </tr>
+</tbody>
+</table>
 
 ### Posterior Checks
 
