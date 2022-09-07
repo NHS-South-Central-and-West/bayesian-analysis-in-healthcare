@@ -37,6 +37,11 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
         with:
           to: "all"
+      
+      - name: Moves Files to Output
+        run: |
+          rsync -vau --remove-source-files _tmp/src/ output
+          find _tmp/ -type d -empty -delete
 
       - name: Commit Results
         run: |
