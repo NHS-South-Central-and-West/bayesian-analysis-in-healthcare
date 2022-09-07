@@ -136,18 +136,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="01-deprivation_files/libs/kePrint-0.0.1/kePrint.js"></script>
 <p><link href="01-deprivation_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet"></p>
 <ul>
-<li><a href="#frequentist-vs-bayesian-statistics-a-primer">Frequentist Vs Bayesian Statistics: A Primer</a></li>
-<li><a href="#visual-exploration-of-deprivation-and-health-inequalities-data">Visual Exploration of Deprivation and Health Inequalities Data</a></li>
-<li><a href="#linear-regression-the-frequentist-way">Linear Regression the Frequentist Way</a></li>
-<li><a href="#bayesian-regression">Bayesian Regression</a>
+<li><a href="#frequentist-vs-bayesian-statistics-a-primer" id="toc-frequentist-vs-bayesian-statistics-a-primer">Frequentist Vs Bayesian Statistics: A Primer</a></li>
+<li><a href="#visual-exploration-of-deprivation-and-health-inequalities-data" id="toc-visual-exploration-of-deprivation-and-health-inequalities-data">Visual Exploration of Deprivation and Health Inequalities Data</a></li>
+<li><a href="#linear-regression-the-frequentist-way" id="toc-linear-regression-the-frequentist-way">Linear Regression the Frequentist Way</a></li>
+<li><a href="#bayesian-regression" id="toc-bayesian-regression">Bayesian Regression</a>
 <ul>
-<li><a href="#setting-priors">Setting Priors</a></li>
-<li><a href="#specify-stan-model">Specify Stan Model</a></li>
-<li><a href="#diagnostic-checks">Diagnostic Checks</a></li>
-<li><a href="#posterior-checks">Posterior Checks</a></li>
-<li><a href="#estimated-parameter-values">Estimated Parameter Values</a></li>
+<li><a href="#setting-priors" id="toc-setting-priors">Setting Priors</a></li>
+<li><a href="#specify-stan-model" id="toc-specify-stan-model">Specify Stan Model</a></li>
+<li><a href="#diagnostic-checks" id="toc-diagnostic-checks">Diagnostic Checks</a></li>
+<li><a href="#posterior-checks" id="toc-posterior-checks">Posterior Checks</a></li>
+<li><a href="#estimated-parameter-values" id="toc-estimated-parameter-values">Estimated Parameter Values</a></li>
 </ul></li>
-<li><a href="#explore-stan-model-using-shiny">Explore Stan Model Using Shiny</a></li>
+<li><a href="#explore-stan-model-using-shiny" id="toc-explore-stan-model-using-shiny">Explore Stan Model Using Shiny</a></li>
 </ul>
 <section id="frequentist-vs-bayesian-statistics-a-primer" class="level2">
 <h2 class="anchored" data-anchor-id="frequentist-vs-bayesian-statistics-a-primer">Frequentist Vs Bayesian Statistics: A Primer</h2>
@@ -175,75 +175,152 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixed_thead =</span> T</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 14%">
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 13%">
-</colgroup>
+
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">mean</th>
-<th style="text-align: right;">median</th>
-<th style="text-align: right;">sd</th>
-<th style="text-align: right;">min</th>
-<th style="text-align: right;">max</th>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+mean
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+median
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+sd
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+min
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+max
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">life_expectancy</td>
-<td style="text-align: right;">81.148214</td>
-<td style="text-align: right;">81.15723</td>
-<td style="text-align: right;">1.554173</td>
-<td style="text-align: right;">76.85814</td>
-<td style="text-align: right;">85.22368</td>
+<tr>
+<td style="text-align:left;">
+life_expectancy
+</td>
+<td style="text-align:right;">
+81.148214
+</td>
+<td style="text-align:right;">
+81.15723
+</td>
+<td style="text-align:right;">
+1.554173
+</td>
+<td style="text-align:right;">
+76.85814
+</td>
+<td style="text-align:right;">
+85.22368
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">mortality</td>
-<td style="text-align: right;">193.020921</td>
-<td style="text-align: right;">189.99839</td>
-<td style="text-align: right;">39.418309</td>
-<td style="text-align: right;">118.90000</td>
-<td style="text-align: right;">328.37085</td>
+<tr>
+<td style="text-align:left;">
+mortality
+</td>
+<td style="text-align:right;">
+193.020921
+</td>
+<td style="text-align:right;">
+189.99839
+</td>
+<td style="text-align:right;">
+39.418309
+</td>
+<td style="text-align:right;">
+118.90000
+</td>
+<td style="text-align:right;">
+328.37085
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">imd_score</td>
-<td style="text-align: right;">23.174205</td>
-<td style="text-align: right;">22.83750</td>
-<td style="text-align: right;">8.045406</td>
-<td style="text-align: right;">5.84600</td>
-<td style="text-align: right;">45.03900</td>
+<tr>
+<td style="text-align:left;">
+imd_score
+</td>
+<td style="text-align:right;">
+23.174205
+</td>
+<td style="text-align:right;">
+22.83750
+</td>
+<td style="text-align:right;">
+8.045406
+</td>
+<td style="text-align:right;">
+5.84600
+</td>
+<td style="text-align:right;">
+45.03900
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">imd_decile</td>
-<td style="text-align: right;">5.445206</td>
-<td style="text-align: right;">5.00000</td>
-<td style="text-align: right;">2.828502</td>
-<td style="text-align: right;">1.00000</td>
-<td style="text-align: right;">10.00000</td>
+<tr>
+<td style="text-align:left;">
+imd_decile
+</td>
+<td style="text-align:right;">
+5.445206
+</td>
+<td style="text-align:right;">
+5.00000
+</td>
+<td style="text-align:right;">
+2.828502
+</td>
+<td style="text-align:right;">
+1.00000
+</td>
+<td style="text-align:right;">
+10.00000
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">physiological_risk_factors</td>
-<td style="text-align: right;">99.684589</td>
-<td style="text-align: right;">98.70000</td>
-<td style="text-align: right;">9.717607</td>
-<td style="text-align: right;">80.20000</td>
-<td style="text-align: right;">125.90000</td>
+<tr>
+<td style="text-align:left;">
+physiological_risk_factors
+</td>
+<td style="text-align:right;">
+99.684589
+</td>
+<td style="text-align:right;">
+98.70000
+</td>
+<td style="text-align:right;">
+9.717607
+</td>
+<td style="text-align:right;">
+80.20000
+</td>
+<td style="text-align:right;">
+125.90000
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">behavioural_risk_factors</td>
-<td style="text-align: right;">99.361301</td>
-<td style="text-align: right;">100.60000</td>
-<td style="text-align: right;">8.611750</td>
-<td style="text-align: right;">72.40000</td>
-<td style="text-align: right;">118.30000</td>
+<tr>
+<td style="text-align:left;">
+behavioural_risk_factors
+</td>
+<td style="text-align:right;">
+99.361301
+</td>
+<td style="text-align:right;">
+100.60000
+</td>
+<td style="text-align:right;">
+8.611750
+</td>
+<td style="text-align:right;">
+72.40000
+</td>
+<td style="text-align:right;">
+118.30000
+</td>
 </tr>
 </tbody>
+
 </table>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>deprivation_df <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(life_expectancy, imd_score)) <span class="sc">+</span></span>
@@ -273,41 +350,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixed_thead =</span> T</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table">
-<colgroup>
-<col style="width: 29%">
-<col style="width: 12%">
-<col style="width: 27%">
-<col style="width: 29%">
-</colgroup>
+
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th style="text-align: left;">Parameter</th>
-<th style="text-align: right;">imd_score</th>
-<th style="text-align: right;">behavioural_risk_factors</th>
-<th style="text-align: right;">physiological_risk_factors</th>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Parameter
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+imd_score
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+behavioural_risk_factors
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+physiological_risk_factors
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">life_expectancy</td>
-<td style="text-align: right;">-0.8390546</td>
-<td style="text-align: right;">0.9053134</td>
-<td style="text-align: right;">0.5643304</td>
+<tr>
+<td style="text-align:left;">
+life_expectancy
+</td>
+<td style="text-align:right;">
+-0.8392544
+</td>
+<td style="text-align:right;">
+0.9054747
+</td>
+<td style="text-align:right;">
+0.563639
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">physiological_risk_factors</td>
-<td style="text-align: right;">-0.3760590</td>
-<td style="text-align: right;">0.5437072</td>
-<td style="text-align: right;"></td>
+<tr>
+<td style="text-align:left;">
+physiological_risk_factors
+</td>
+<td style="text-align:right;">
+-0.3784489
+</td>
+<td style="text-align:right;">
+0.5418544
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">behavioural_risk_factors</td>
-<td style="text-align: right;">-0.8402625</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
+<tr>
+<td style="text-align:left;">
+behavioural_risk_factors
+</td>
+<td style="text-align:right;">
+-0.8412426
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 </tbody>
+
 </table>
 <p>There are strong correlations between life expectancy and the three independent variables, however, the correlation between IMD score and the two risk factor variables is also relatively strong, and in the case of behavioural risk factors, it is very strong. This could be an issue.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>deprivation_df <span class="sc">%&gt;%</span></span>
@@ -350,66 +452,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(life_expectancy_ols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table">
-<colgroup>
-<col style="width: 37%">
-<col style="width: 23%">
-<col style="width: 20%">
-<col style="width: 18%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">&nbsp;</th>
-<th style="text-align: center;">life expectancy</th>
-<th style="text-align: center;"></th>
-<th style="text-align: center;"></th>
+
+<table style="border-collapse:collapse; border:none;">
+<tbody><tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+&nbsp;
+</th>
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+life expectancy
+</th>
 </tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Predictors</td>
-<td style="text-align: center;">Estimates</td>
-<td style="text-align: center;">CI</td>
-<td style="text-align: center;">p</td>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+p
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">(Intercept)</td>
-<td style="text-align: center;">81.22</td>
-<td style="text-align: center;">81.15&nbsp;–&nbsp;81.29</td>
-<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+81.22
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+81.15&nbsp;–&nbsp;81.29
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001</strong>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">imd transformed</td>
-<td style="text-align: center;">-0.07</td>
-<td style="text-align: center;">-0.08&nbsp;–&nbsp;-0.05</td>
-<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+imd transformed
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.07
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.08&nbsp;–&nbsp;-0.05
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001</strong>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">physiological transformed</td>
-<td style="text-align: center;">0.02</td>
-<td style="text-align: center;">0.02&nbsp;–&nbsp;0.03</td>
-<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+physiological transformed
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.02&nbsp;–&nbsp;0.03
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001</strong>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">behavioural transformed</td>
-<td style="text-align: center;">0.10</td>
-<td style="text-align: center;">0.08&nbsp;–&nbsp;0.11</td>
-<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+behavioural transformed
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.10
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.08&nbsp;–&nbsp;0.11
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001</strong>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">Observations</td>
-<td style="text-align: center;">292</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+292
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">R² / R² adjusted</td>
-<td style="text-align: center;">0.856 / 0.854</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+0.856 / 0.854
+</td>
 </tr>
-</tbody>
-</table>
+
+</tbody></table>
 <p>The results suggest that each of the explanatory variables has a small but significant effect on life expectancy. As deprivation increases (IMD score increases), life expectancy decreases, while as the index score representing physiological and behavioural risk factors (meaning a better performance in that Health Index subdomain) increases, life expectancy increases.</p>
 </section>
 <section id="bayesian-regression" class="level2">
@@ -440,47 +580,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixed_thead =</span> T</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table">
-<colgroup>
-<col style="width: 35%">
-<col style="width: 26%">
-<col style="width: 21%">
-<col style="width: 17%">
-</colgroup>
+
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th style="text-align: left;">Parameter</th>
-<th style="text-align: left;">Prior_Distribution</th>
-<th style="text-align: right;">Prior_Location</th>
-<th style="text-align: right;">Prior_Scale</th>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Parameter
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Prior_Distribution
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Prior_Location
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Prior_Scale
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: left;">normal</td>
-<td style="text-align: right;">80</td>
-<td style="text-align: right;">1.00</td>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:left;">
+normal
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:right;">
+1.00
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">imd_transformed</td>
-<td style="text-align: left;">normal</td>
-<td style="text-align: right;">-1</td>
-<td style="text-align: right;">0.25</td>
+<tr>
+<td style="text-align:left;">
+imd_transformed
+</td>
+<td style="text-align:left;">
+normal
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+0.25
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">physiological_transformed</td>
-<td style="text-align: left;">normal</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.50</td>
+<tr>
+<td style="text-align:left;">
+physiological_transformed
+</td>
+<td style="text-align:left;">
+normal
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.50
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">behavioural_transformed</td>
-<td style="text-align: left;">normal</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.25</td>
+<tr>
+<td style="text-align:left;">
+behavioural_transformed
+</td>
+<td style="text-align:left;">
+normal
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.25
+</td>
 </tr>
 </tbody>
+
 </table>
 <p>The prior distributions look pretty sensible:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(life_expectancy_priors, <span class="st">"hist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -496,52 +672,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> <span class="fu">normal</span>(<span class="at">location =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="at">scale =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>))</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(life_expectancy_glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">&nbsp;</th>
-<th style="text-align: center;">life expectancy</th>
-<th style="text-align: center;"></th>
+
+<table style="border-collapse:collapse; border:none;">
+<tbody><tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+&nbsp;
+</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+life expectancy
+</th>
 </tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Predictors</td>
-<td style="text-align: center;">Estimates</td>
-<td style="text-align: center;">CI (95%)</td>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+CI (95%)
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">(Intercept)</td>
-<td style="text-align: center;">81.22</td>
-<td style="text-align: center;">81.15&nbsp;–&nbsp;81.28</td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+81.22
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+81.15&nbsp;–&nbsp;81.29
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">imd transformed</td>
-<td style="text-align: center;">-0.07</td>
-<td style="text-align: center;">-0.08&nbsp;–&nbsp;-0.05</td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+imd transformed
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.07
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.08&nbsp;–&nbsp;-0.05
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">physiological transformed</td>
-<td style="text-align: center;">0.02</td>
-<td style="text-align: center;">0.02&nbsp;–&nbsp;0.03</td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+physiological transformed
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.02&nbsp;–&nbsp;0.03
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">behavioural transformed</td>
-<td style="text-align: center;">0.10</td>
-<td style="text-align: center;">0.08&nbsp;–&nbsp;0.11</td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+behavioural transformed
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.10
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.08&nbsp;–&nbsp;0.11
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">Observations</td>
-<td style="text-align: center;">292</td>
-<td style="text-align: center;"></td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
+292
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">R² Bayes</td>
-<td style="text-align: center;">0.855</td>
-<td style="text-align: center;"></td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> Bayes
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
+0.854
+</td>
 </tr>
-</tbody>
-</table>
+
+</tbody></table>
 </section>
 <section id="diagnostic-checks" class="level3">
 <h3 class="anchored" data-anchor-id="diagnostic-checks">Diagnostic Checks</h3>
@@ -554,27 +767,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixed_thead =</span> T</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table">
+
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th style="text-align: left;">Parameter</th>
-<th style="text-align: right;">Sensitivity_Median</th>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Parameter
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Sensitivity_Median
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">imd_transformed</td>
-<td style="text-align: right;">3.513966</td>
+<tr>
+<td style="text-align:left;">
+imd_transformed
+</td>
+<td style="text-align:right;">
+3.476039
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">physiological_transformed</td>
-<td style="text-align: right;">6.062216</td>
+<tr>
+<td style="text-align:left;">
+physiological_transformed
+</td>
+<td style="text-align:right;">
+6.067614
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">behavioural_transformed</td>
-<td style="text-align: right;">3.503090</td>
+<tr>
+<td style="text-align:left;">
+behavioural_transformed
+</td>
+<td style="text-align:right;">
+3.509453
+</td>
 </tr>
 </tbody>
+
 </table>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bayestestR::diagnostic_posterior(life_expectancy_glm)</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -585,41 +816,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixed_thead =</span> T</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table">
+
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th style="text-align: left;">Parameter</th>
-<th style="text-align: right;">Rhat</th>
-<th style="text-align: right;">ESS</th>
-<th style="text-align: right;">MCSE</th>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Parameter
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Rhat
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ESS
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MCSE
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">0.9995156</td>
-<td style="text-align: right;">4855.888</td>
-<td style="text-align: right;">0.0149108</td>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+0.9994310
+</td>
+<td style="text-align:right;">
+4601.805
+</td>
+<td style="text-align:right;">
+0.0154523
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">behavioural_transformed</td>
-<td style="text-align: right;">0.9992264</td>
-<td style="text-align: right;">4706.140</td>
-<td style="text-align: right;">0.0036819</td>
+<tr>
+<td style="text-align:left;">
+behavioural_transformed
+</td>
+<td style="text-align:right;">
+0.9999069
+</td>
+<td style="text-align:right;">
+4331.096
+</td>
+<td style="text-align:right;">
+0.0039422
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">imd_transformed</td>
-<td style="text-align: right;">0.9997823</td>
-<td style="text-align: right;">5081.200</td>
-<td style="text-align: right;">0.0035480</td>
+<tr>
+<td style="text-align:left;">
+imd_transformed
+</td>
+<td style="text-align:right;">
+0.9996066
+</td>
+<td style="text-align:right;">
+4156.779
+</td>
+<td style="text-align:right;">
+0.0039036
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">physiological_transformed</td>
-<td style="text-align: right;">0.9994013</td>
-<td style="text-align: right;">4566.234</td>
-<td style="text-align: right;">0.0077154</td>
+<tr>
+<td style="text-align:left;">
+physiological_transformed
+</td>
+<td style="text-align:right;">
+0.9996796
+</td>
+<td style="text-align:right;">
+4452.416
+</td>
+<td style="text-align:right;">
+0.0074020
+</td>
 </tr>
 </tbody>
+
 </table>
 </section>
 <section id="posterior-checks" class="level3">

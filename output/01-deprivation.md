@@ -199,19 +199,19 @@ deprivation_df %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> life_expectancy </td>
-   <td style="text-align:right;"> -0.8392544 </td>
-   <td style="text-align:right;"> 0.9054747 </td>
-   <td style="text-align:right;"> 0.563639 </td>
+   <td style="text-align:right;"> -0.8380433 </td>
+   <td style="text-align:right;"> 0.9059915 </td>
+   <td style="text-align:right;"> 0.5637379 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> physiological_risk_factors </td>
-   <td style="text-align:right;"> -0.3784489 </td>
-   <td style="text-align:right;"> 0.5418544 </td>
+   <td style="text-align:right;"> -0.3777696 </td>
+   <td style="text-align:right;"> 0.5407540 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> behavioural_risk_factors </td>
-   <td style="text-align:right;"> -0.8412426 </td>
+   <td style="text-align:right;"> -0.8416980 </td>
    <td style="text-align:right;">  </td>
    <td style="text-align:right;">  </td>
   </tr>
@@ -525,15 +525,15 @@ life_expectancy_priors %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> imd_transformed </td>
-   <td style="text-align:right;"> 3.476039 </td>
+   <td style="text-align:right;"> 3.516621 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> physiological_transformed </td>
-   <td style="text-align:right;"> 6.067614 </td>
+   <td style="text-align:right;"> 5.990901 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> behavioural_transformed </td>
-   <td style="text-align:right;"> 3.509453 </td>
+   <td style="text-align:right;"> 3.511873 </td>
   </tr>
 </tbody>
 </table>
@@ -562,27 +562,27 @@ life_expectancy_priors %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:right;"> 0.9994310 </td>
-   <td style="text-align:right;"> 4601.805 </td>
-   <td style="text-align:right;"> 0.0154523 </td>
+   <td style="text-align:right;"> 0.9998913 </td>
+   <td style="text-align:right;"> 4621.268 </td>
+   <td style="text-align:right;"> 0.0150862 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> behavioural_transformed </td>
-   <td style="text-align:right;"> 0.9999069 </td>
-   <td style="text-align:right;"> 4331.096 </td>
-   <td style="text-align:right;"> 0.0039422 </td>
+   <td style="text-align:right;"> 1.0003332 </td>
+   <td style="text-align:right;"> 4291.445 </td>
+   <td style="text-align:right;"> 0.0039489 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> imd_transformed </td>
-   <td style="text-align:right;"> 0.9996066 </td>
-   <td style="text-align:right;"> 4156.779 </td>
-   <td style="text-align:right;"> 0.0039036 </td>
+   <td style="text-align:right;"> 1.0000625 </td>
+   <td style="text-align:right;"> 4580.788 </td>
+   <td style="text-align:right;"> 0.0037278 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> physiological_transformed </td>
-   <td style="text-align:right;"> 0.9996796 </td>
-   <td style="text-align:right;"> 4452.416 </td>
-   <td style="text-align:right;"> 0.0074020 </td>
+   <td style="text-align:right;"> 1.0003704 </td>
+   <td style="text-align:right;"> 4456.207 </td>
+   <td style="text-align:right;"> 0.0073042 </td>
   </tr>
 </tbody>
 </table>
@@ -606,11 +606,7 @@ life_expectancy_posterior <- as.matrix(life_expectancy_glm)
 #     title = "Posterior Predictive Checks Against Observed Data",
 #     subtitle = "Samples Drawn from Posterior Predictive Distribution of Life Expectancy\nby IMD Score and Physiological & Behavioural Risk Factors",
 #     x = "Life Expectancy"
-#     ) +
-#   theme(
-#     legend.position = "top",
-#     legend.text = element_text(size = 12)
-#   )
+#     )
 
 life_expectancy_rep <- posterior_predict(life_expectancy_glm)
 
@@ -629,12 +625,7 @@ posterior_vs_prior(
   group_by_parameter = TRUE,
   facet_args = list(scales = "free")
 ) +
-  scale_colour_viridis_d() +
-  theme_minimal() +
-  theme(
-    legend.position = "top",
-    legend.title = element_blank()
-  )
+  scale_colour_viridis_d()
 ```
 
 ![](01-deprivation_files/figure-gfm/posterior-checks-2.png)
