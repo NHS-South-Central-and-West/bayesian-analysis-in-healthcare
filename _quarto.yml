@@ -1,6 +1,10 @@
 project:
   title: "bayesian-analysis-in-healthcare"
   execute-dir: project
+  output-dir: _tmp
+  post-render:
+    - rsync -vau --remove-source-files _tmp/src/ output
+    - find _tmp/ -type d -empty -delete
 
 toc: true
 toc-depth: 3
