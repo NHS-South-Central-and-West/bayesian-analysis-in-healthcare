@@ -37,13 +37,20 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
         with:
           to: "all"
+          path: output
 
-      - name: Commit & Push Changes
+      - name: Commit Results
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "action@github.com"
-          if output=$(git status --porcelain) && [ ! -z "$output" ]; then
-            git add --all
-            git commit -m "(GHA) Render Quarto files" -a
-            git push
-          fi
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -m "CI added changes `date +'%Y-%m-%d %H:%M:%S'`" || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
+          
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # WORKFLOW_GITHUB_TOKEN
+          force: true
