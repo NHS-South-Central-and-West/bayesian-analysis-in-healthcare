@@ -14,7 +14,7 @@ format:
     warning: false
     theme: lumen
     highlight-style: github
-  commonmark:
+  gfm:
     variant: -raw_html
     fig-width: 12
     fig-height: 8
