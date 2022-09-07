@@ -1,12 +1,10 @@
 ---
-title: "Using a Bayesian Framework for Analysing the Effect of Deprivation on Health Outcomes"
+title: "The Relationship between Deprivation & Health Outcomes"
+subtitle: "Using a Bayesian Framework for Analysing How Deprivation Effects Health"
 author: "Paul Johnson"
-format: 
-  html:
-    toc: true
-editor_options: 
-  chunk_output_type: console
+date: "`r Sys.Date()`"
 ---
+
 ```{r setup}
 #| include: false
 
@@ -24,6 +22,7 @@ options(knitr.kable.NA = '')
 deprivation_df <- 
   readr::read_rds(here::here("data", "deprivation.rds"))
 ```
+
 
 
 ## Frequentist Vs Bayesian Statistics: A Primer
