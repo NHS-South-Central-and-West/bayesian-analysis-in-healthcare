@@ -4,6 +4,7 @@ project:
 
 toc: true
 toc-depth: 3
+prefer-html: true
 
 format:
   gfm:
