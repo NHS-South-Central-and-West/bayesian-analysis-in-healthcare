@@ -33,10 +33,10 @@ jobs:
         run: |
           sudo apt-get install -y libglpk-dev
   
-      - name: Render Quarto Files
+      - name: Render Quarto Files as HTML & GitHub Markdown
         uses: quarto-dev/quarto-actions/render@v2
         with:
-          to: [html, gfm]
+          to: all
 
       - name: Commit & Push Changes
         run: |
