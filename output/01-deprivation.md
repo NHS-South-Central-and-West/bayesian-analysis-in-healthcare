@@ -3,10 +3,6 @@ The Relationship between Deprivation & Health Outcomes
 Paul Johnson
 2022-09-07
 
-<script src="01-deprivation_files/libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="01-deprivation_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-
-
 - <a href="#frequentist-vs-bayesian-statistics-a-primer"
   id="toc-frequentist-vs-bayesian-statistics-a-primer">Frequentist Vs
   Bayesian Statistics: A Primer</a>
@@ -74,75 +70,17 @@ deprivation_df %>%
     -skew, -kurtosis, -se, -range
   ) %>%
   relocate(sd, .after = median) %>%
-  kableExtra::kbl() %>%
-  kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    fixed_thead = T
-  )
+  knitr::kable(digits = 2)
 ```
 
-<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">   </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> mean </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> sd </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> min </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> max </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> life_expectancy </td>
-   <td style="text-align:right;"> 81.148214 </td>
-   <td style="text-align:right;"> 81.15723 </td>
-   <td style="text-align:right;"> 1.554173 </td>
-   <td style="text-align:right;"> 76.85814 </td>
-   <td style="text-align:right;"> 85.22368 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> mortality </td>
-   <td style="text-align:right;"> 193.020921 </td>
-   <td style="text-align:right;"> 189.99839 </td>
-   <td style="text-align:right;"> 39.418309 </td>
-   <td style="text-align:right;"> 118.90000 </td>
-   <td style="text-align:right;"> 328.37085 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> imd_score </td>
-   <td style="text-align:right;"> 23.174205 </td>
-   <td style="text-align:right;"> 22.83750 </td>
-   <td style="text-align:right;"> 8.045406 </td>
-   <td style="text-align:right;"> 5.84600 </td>
-   <td style="text-align:right;"> 45.03900 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> imd_decile </td>
-   <td style="text-align:right;"> 5.445206 </td>
-   <td style="text-align:right;"> 5.00000 </td>
-   <td style="text-align:right;"> 2.828502 </td>
-   <td style="text-align:right;"> 1.00000 </td>
-   <td style="text-align:right;"> 10.00000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> physiological_risk_factors </td>
-   <td style="text-align:right;"> 99.684589 </td>
-   <td style="text-align:right;"> 98.70000 </td>
-   <td style="text-align:right;"> 9.717607 </td>
-   <td style="text-align:right;"> 80.20000 </td>
-   <td style="text-align:right;"> 125.90000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> behavioural_risk_factors </td>
-   <td style="text-align:right;"> 99.361301 </td>
-   <td style="text-align:right;"> 100.60000 </td>
-   <td style="text-align:right;"> 8.611750 </td>
-   <td style="text-align:right;"> 72.40000 </td>
-   <td style="text-align:right;"> 118.30000 </td>
-  </tr>
-</tbody>
-</table>
+|                            |   mean | median |    sd |    min |    max |
+|:---------------------------|-------:|-------:|------:|-------:|-------:|
+| life_expectancy            |  81.15 |  81.16 |  1.55 |  76.86 |  85.22 |
+| mortality                  | 193.02 | 190.00 | 39.42 | 118.90 | 328.37 |
+| imd_score                  |  23.17 |  22.84 |  8.05 |   5.85 |  45.04 |
+| imd_decile                 |   5.45 |   5.00 |  2.83 |   1.00 |  10.00 |
+| physiological_risk_factors |  99.68 |  98.70 |  9.72 |  80.20 | 125.90 |
+| behavioural_risk_factors   |  99.36 | 100.60 |  8.61 |  72.40 | 118.30 |
 
 ``` r
 deprivation_df %>%
@@ -180,43 +118,14 @@ deprivation_df %>%
   summarise_all(.funs = "mean") %>%
   correlation::correlation(bayesian = TRUE) %>%
   summary() %>%
-  kableExtra::kbl() %>%
-  kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    fixed_thead = T
-  )
+  knitr::kable(digit = 2)
 ```
 
-<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Parameter </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> imd_score </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> behavioural_risk_factors </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> physiological_risk_factors </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> life_expectancy </td>
-   <td style="text-align:right;"> -0.8381805 </td>
-   <td style="text-align:right;"> 0.9046938 </td>
-   <td style="text-align:right;"> 0.5604642 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> physiological_risk_factors </td>
-   <td style="text-align:right;"> -0.3769025 </td>
-   <td style="text-align:right;"> 0.5441821 </td>
-   <td style="text-align:right;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> behavioural_risk_factors </td>
-   <td style="text-align:right;"> -0.8408643 </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:right;">  </td>
-  </tr>
-</tbody>
-</table>
+| Parameter                  | imd_score | behavioural_risk_factors | physiological_risk_factors |
+|:---------------------------|----------:|-------------------------:|---------------------------:|
+| life_expectancy            |     -0.84 |                     0.90 |                       0.56 |
+| physiological_risk_factors |     -0.38 |                     0.54 |                            |
+| behavioural_risk_factors   |     -0.84 |                          |                            |
 
 There are strong correlations between life expectancy and the three
 independent variables, however, the correlation between IMD score and
@@ -392,49 +301,15 @@ We can see a summary of our priors here:
 
 life_expectancy_priors %>%
   bayestestR::describe_prior() %>%
-  kableExtra::kbl() %>%
-  kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    fixed_thead = T
-  )
+  knitr::kable(digits = 2)
 ```
 
-<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Parameter </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Prior_Distribution </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Prior_Location </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Prior_Scale </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:left;"> normal </td>
-   <td style="text-align:right;"> 80 </td>
-   <td style="text-align:right;"> 1.00 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> imd_transformed </td>
-   <td style="text-align:left;"> normal </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 0.25 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> physiological_transformed </td>
-   <td style="text-align:left;"> normal </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.50 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> behavioural_transformed </td>
-   <td style="text-align:left;"> normal </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.25 </td>
-  </tr>
-</tbody>
-</table>
+| Parameter                 | Prior_Distribution | Prior_Location | Prior_Scale |
+|:--------------------------|:-------------------|---------------:|------------:|
+| (Intercept)               | normal             |             80 |        1.00 |
+| imd_transformed           | normal             |             -1 |        0.25 |
+| physiological_transformed | normal             |              1 |        0.50 |
+| behavioural_transformed   | normal             |              1 |        0.25 |
 
 The prior distributions look pretty sensible:
 
@@ -508,84 +383,29 @@ sjPlot::tab_model(life_expectancy_glm)
 
 life_expectancy_priors %>%
   bayestestR::sensitivity_to_prior() %>%
-  kableExtra::kbl() %>%
-  kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    fixed_thead = T
-  )
+  knitr::kable(digits = 2)
 ```
 
-<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Parameter </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Sensitivity_Median </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> imd_transformed </td>
-   <td style="text-align:right;"> 3.507635 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> physiological_transformed </td>
-   <td style="text-align:right;"> 5.943580 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> behavioural_transformed </td>
-   <td style="text-align:right;"> 3.524051 </td>
-  </tr>
-</tbody>
-</table>
+| Parameter                 | Sensitivity_Median |
+|:--------------------------|-------------------:|
+| imd_transformed           |               3.48 |
+| physiological_transformed |               6.03 |
+| behavioural_transformed   |               3.48 |
 
 ``` r
 # bayestestR::diagnostic_posterior(life_expectancy_glm)
 
 life_expectancy_priors %>%
   bayestestR::diagnostic_posterior() %>%
-  kableExtra::kbl() %>%
-  kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    fixed_thead = T
-  )
+  knitr::kable(digits = 2)
 ```
 
-<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Parameter </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Rhat </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> ESS </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> MCSE </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:right;"> 0.9992932 </td>
-   <td style="text-align:right;"> 4219.888 </td>
-   <td style="text-align:right;"> 0.0160435 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> behavioural_transformed </td>
-   <td style="text-align:right;"> 0.9999048 </td>
-   <td style="text-align:right;"> 4827.834 </td>
-   <td style="text-align:right;"> 0.0036789 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> imd_transformed </td>
-   <td style="text-align:right;"> 1.0001691 </td>
-   <td style="text-align:right;"> 4234.855 </td>
-   <td style="text-align:right;"> 0.0038431 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> physiological_transformed </td>
-   <td style="text-align:right;"> 1.0006141 </td>
-   <td style="text-align:right;"> 4472.579 </td>
-   <td style="text-align:right;"> 0.0076514 </td>
-  </tr>
-</tbody>
-</table>
+| Parameter                 | Rhat |     ESS | MCSE |
+|:--------------------------|-----:|--------:|-----:|
+| (Intercept)               |    1 | 4034.47 | 0.02 |
+| behavioural_transformed   |    1 | 4211.05 | 0.00 |
+| imd_transformed           |    1 | 3860.04 | 0.00 |
+| physiological_transformed |    1 | 4374.07 | 0.01 |
 
 ### Posterior Checks
 
