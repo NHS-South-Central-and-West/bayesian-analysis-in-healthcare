@@ -1,6 +1,5 @@
 ---
-title: "The Relationship between Deprivation & Health Outcomes"
-subtitle: "Using a Bayesian Framework for Analysing How Deprivation Effects Health"
+title: "Using a Bayesian Framework for Analysing the Relationship between Deprivation & Health Outcomes"
 author: "Paul Johnson"
 date: "`r Sys.Date()`"
 ---
